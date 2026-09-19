@@ -4,13 +4,25 @@ Thanks for helping improve CopiClaude.
 
 ## Local setup
 
-1. Fork and clone the repository.
-2. Make changes in a focused branch.
-3. Install [Bats](https://bats-core.readthedocs.io/) to run tests.
-4. Run `make test`.
+```bash
+git clone https://github.com/AngelGianpieer/copiclaude
+cd copiclaude
+python -m venv .venv && . .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install -e ".[test]"
+pytest
+```
 
-Keep the launcher dependency-free, preserve clear error messages, and update
-the README when user-visible behavior changes.
+The suite includes end-to-end tests that run copiclaude in a pseudo-terminal
+against stand-in agents (`tests/fake_agent.py`); they take about 20 seconds and
+never touch your real Claude or Copilot sessions (tests isolate `HOME`).
+
+## Guidelines
+
+- Keep it dependency-free apart from `pywinpty` on Windows. Support Python 3.9+.
+- Anything that reads another tool's files must degrade to "nothing found", never raise.
+- Never write into an agent's terminal on the user's behalf.
+- Add a test for behaviour changes; update README, CHANGELOG and both READMEs' shared claims.
+- Windows behaviour can only be checked in CI or on Windows: say which you did.
 
 ## Pull requests
 

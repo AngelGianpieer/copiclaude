@@ -16,6 +16,8 @@ labels: bug
 ## Environment
 
 - OS:
-- Bash version:
+- Python version:
+- Terminal (e.g. Windows Terminal, iTerm2, kitty, gnome-terminal):
+- Output of `copiclaude doctor`:
 - CopiClaude version or commit:
 - Assistant command affected:
